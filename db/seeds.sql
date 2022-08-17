@@ -2,7 +2,7 @@
 USE employeeDB;
 
 /* This inserts the values into the department table */
-INSERT INTO department
+INSERT INTO department 
 (name)
 
 VALUES
@@ -25,15 +25,16 @@ VALUES
 ('Business Manager', 150000, 4),
 ('Businessman', 120000, 4);
 
+
 INSERT INTO employee
 (first_name, last_name, role_id, manager_id)
 
 VALUES
-('James', 'Verano', 1, 2),
-('Carl', 'Wheezer', 2, 1),
-('Cherry', 'Mooredell', 3, 4),
-('Naruto', 'Uzumaki', 4, 3),
-('Fabio', 'Breezehair', 5, 6),
+('James', 'Verano', 1, 1),
+('Carl', 'Wheezer', 2, NULL),
+('Cherry', 'Moore', 3, 2),
+('Naruto', 'Uzumaki', 4, NULL),
+('Fabio', 'Breezehair', 5, 3),
 ('Lisa', 'Simpson', 6, 5),
-('Draco', 'Mouffoy', 7, 8),
-('Kirby', 'Moore', 8, 7);
+('Draco', 'Mouffoy', 7, Null),
+('Kirby', 'Moore', 8, 4);
