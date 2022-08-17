@@ -16,14 +16,14 @@ INSERT INTO role
 (title, salary, department_id)
 
 VALUES 
-('Marketing Manager'),
-('Marketing Associate'),
-('Engineering Manager'),
-('Engineer'),
-('Advertising Manager'),
-('Advertising Asscociate'),
-('Business Manager'),
-('Businessman');
+('Marketing Manager', 100000, 1),
+('Marketing Associate',67000, 1),
+('Lead Engineering Manager', 107000, 2),
+('Engineer', 95000, 2),
+('Advertising Manager', 105000, 3),
+('Advertising Asscociate', 86000, 3),
+('Business Manager', 150000, 4),
+('Businessman', 120000, 4);
 
 INSERT INTO employee
 (first_name, last_name, role_id, manager_id)
