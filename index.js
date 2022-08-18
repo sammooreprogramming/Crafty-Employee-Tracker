@@ -1,5 +1,5 @@
 // Requirements / dependencies listed below.
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const cTable = require(console.table);
 // The below is dotenv & it is used for password encryption and security purposes.
@@ -49,35 +49,48 @@ function centralPrompt() {
                     'View entire budget',
                     'Exit application']
 // Using the answers from the user, the data (or 'answers') is used to navigate to the function required for the specified choice.
-                }]).then((answers) => {
+                }]).then(function (answers) {
                     if (answers === 'View all departments') {
                         viewAllDepartments();
+
                     } if (answers === 'View all roles') {
                         viewAllRoles();
+                        
                     } if (answers === 'View all employees') {
                         viewAllEmployees();
+
                     } if (answers === 'Add department') {
                         addADepartment();
+
                     } if (answers === 'Add role') {
                         addARole();
+
                     } if (answers === 'add employee') {
                         addAnEmployee();
+
                     } if (answers === 'Update an employee role') {
                         updateAnEmployeeRole();
+
                     } if (answers === 'Update an employee manager') {
                         updateAnEmployeeManger();
+
                     } if (answers === 'View employees by department') {
                         viewAllEmployeeByDepartment();
+
                     } if (answers === 'Delete department') {
                         deleteADepartment();
+
                     } if (answers === 'Delete role') {
                         deleteARole();
+
                     } if (answers === 'Delete employee') {
                         deleteAnEmployee();
-                    }if (answers === 'View entire budget') {
+                        
+                    } if (answers === 'View entire budget') {
                         viewEntireBudget();
-                    }if (answers === 'Exit application') {
+
+                    } if (answers === 'Exit application') {
                         EndApplication();
                     }
-                })
+                });
 };
