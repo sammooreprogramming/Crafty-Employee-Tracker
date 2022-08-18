@@ -3,8 +3,7 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const cTable = require(console.table);
 
-// All functions are listed here.
-
+// All functions are listed below.
 function viewAllDepartments() {
 
 console.log('Displaying all of the departments shortly');
@@ -12,7 +11,7 @@ const sqlQuery = `SELECT * FROM department`;
 
 connection.query(sqlQuery, function (err, res) {
     if (err) throw err;
-// console.table displays all of the departments.   
+// console.table displays all of the departments in the table.   
     console.table(res);
     centralPrompt();
  });
@@ -25,7 +24,7 @@ const sqlQuery = `SELECT * FROM role`;
 
 connection.query(sqlQuery, function (err, res) {
     if (err) throw err;
-// console.table displays all of the roles.
+// console.table displays all of the roles in the table.
 console.table(res);
 centralPrompt();
 });
@@ -38,7 +37,7 @@ const sqlQuery = `SELECT * FROM employees`;
     
 connection.query(sqlQuery, function (err, res) {
 if (err) throw err;
-// console.table displays all of your employees.
+// console.table displays all of your employees in the table.
 console.table(res);
 centralPrompt();
  });
@@ -65,6 +64,62 @@ inquirer.prompt([{
     });
   });
 };
+
+
+function addARole() {
+    inquirer.prompt([
+            {
+            type: input,
+            message: 'What is the name of the role you would like to add?',
+            name: nameOfRole,
+            validate: function createARole () {
+                if (createARole === true) {
+                    return true;
+                } else console.log('please enter the name the name of the role you would like to add.');
+                return false;
+            }
+            },
+            {
+            type: input,
+            message: 'What is the salary of this role?',
+            name: roleSalary,
+            validate: function roleSalary () {
+                if (Number.isNaN(roleSalary)) {
+                    return true;
+                } else {
+                    console.log('Please enter a salary for this role.')
+                    return false;
+                }
+            }
+            },
+            {
+            type: input,
+            message: 'For this role, what is the ID for the department?',
+            name: departmentId,
+            validate: function departmentId () {
+                if (Number.isNaN(departmentId)) {
+                    return true;
+                } else {
+                    console.log('Please enter a department ID for this role.')
+                    return false;
+                }
+            }
+            }
+            ]).then(function (answers) {
+            // constant to hold the answers
+            const sqlParameters  = [answers.nameOfRole, answers.roleSalary, answers.departmentId];
+            const sqlQueryForRole = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
+            connection.query(sqlQueryForRole, sqlParameters, function () {
+                if (err) throw err;
+                // console.table displays all of the added roles from the response in the table.
+                console.table(res);
+                centralPrompt();
+            });
+        });
+      };
+
+      
+
 
 module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees, 
     addADepartment, addARole, addAnEmployee, updateAnEmployeeRole, updateAnEmployeeManger, 
