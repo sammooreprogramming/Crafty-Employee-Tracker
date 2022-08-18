@@ -106,16 +106,52 @@ function addARole() {
             }
             }
             ]).then(function (answers) {
-            // constant to hold the answers
-            const sqlParameters  = [answers.nameOfRole, answers.roleSalary, answers.departmentId];
+            // constants to hold the answers and the SQL statement
+            const sqlParametersRole  = [answers.nameOfRole, answers.roleSalary, answers.departmentId];
             const sqlQueryForRole = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
-            connection.query(sqlQueryForRole, sqlParameters, function () {
+            connection.query(sqlQueryForRole, sqlParametersRole, function () {
                 if (err) throw err;
                 // console.table displays all of the added roles from the response in the table.
                 console.table(res);
                 centralPrompt();
             });
         });
+      };
+
+
+      function addAnEmployee() {
+        inquirer.prompt([
+          {
+            type: "input",
+            message: "What's the first name of the employee?",
+            name: "employeesFirstName"
+          },
+          {
+            type: "input",
+            message: "What's the last name of the employee?",
+            name: "employeesLastName"
+          },
+          {
+            type: "input",
+            message: "What is the employee's role id number?",
+            name: "employeesRoleId"
+          },
+          {
+            type: "input",
+            message: "What is the manager id number?",
+            name: "ManagersId"
+          }
+        ]).then(function (answers) {
+            // constants to hold the answers and the SQL statement.
+            const sqlQueryEmployee = `INSERT INTO employee (first_name, last_name, department_id, employee_role_id,) VALUES (?,?,?,?)`;
+            const sqlParametersEmployee = [answers.employeesFirstName, answers.employeesLastName, answers.employeesRoleId, answers.ManagersId];
+            connection.query(sqlQueryEmployee, sqlParametersEmployee, function () {
+                if (err) throw err;
+                // console.table displays all of the added roles from the response in the table.
+                console.table(res);
+                centralPrompt();
+            });
+         });
       };
 
       
