@@ -1,12 +1,10 @@
 // Requirements / dependencies listed below.
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const cTable = require(console.table);
+const cTable = require('console.table');
+const functions = require('util/functions'); 
 // The below is dotenv & it is used for password encryption and security purposes.
 require('dotenv').config()
-// Chalk is used for string art to make the challenge more fun 
-// and also to smooth out the challenge with art for professionality.
-import chalk from 'chalk';
 // Database conncection (password hidden with dotenv).
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -25,7 +23,8 @@ whenConnectionIsLive();
 
 // when connection is live display using chalk a piece of string art to greet the user appropriately.
 function whenConnectionIsLive() {
-console.log(chalk.blue.bold(' Nifty Employee Tracker!')).then(centralPrompt());
+console.log(chalk.blue.bold(' Nifty Employee Tracker!'));
+centralPrompt();
 };
 
 // Functionality begins here for the actual challenge using an inquirer prompt.

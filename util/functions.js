@@ -57,6 +57,7 @@ inquirer.prompt([{
     }
   }]).then(function (answer) {
     const sqlQuery = `INSERT INTO department (name) VALUES (?)`
+
     connection.query(sqlQuery, answer.createADepartment, function (err, res) {
     if (err) throw err;
     console.log(answer.createADepartment + 'was added to the department');
@@ -109,6 +110,7 @@ function addARole() {
             // constants to hold the answers and the SQL statement
             const sqlParametersRole  = [answers.nameOfRole, answers.roleSalary, answers.departmentId];
             const sqlQueryForRole = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
+
             connection.query(sqlQueryForRole, sqlParametersRole, function () {
                 if (err) throw err;
                 // console.table displays all of the added roles from the response in the table.
@@ -145,6 +147,7 @@ function addARole() {
             // constants to hold the answers and the SQL statement.
             const sqlQueryEmployee = `INSERT INTO employee (first_name, last_name, department_id, employee_role_id,) VALUES (?,?,?,?)`;
             const sqlParametersEmployee = [answers.employeesFirstName, answers.employeesLastName, answers.employeesRoleId, answers.ManagersId];
+
             connection.query(sqlQueryEmployee, sqlParametersEmployee, function () {
                 if (err) throw err;
                 // console.table displays all of the added roles from the response in the table.
@@ -154,7 +157,31 @@ function addARole() {
          });
       };
 
-      
+     function updateAnEmployeeRole() {
+        inquirer.prompt([
+            {
+             type: input,
+             message: 'Please specify the name of the emplpoyee whose role you want to update',
+             name: updateEmployeeRoleName
+            },
+            {
+            type: input,
+            message: 'What is the new role of the employee you want to update?',
+            name: updatedEmployeeRole
+            }
+        ]).then(function (answers) {
+        // console.table displays all of the added roles from the response in the table
+        const sqlQueryUpdateEmployee = `UPDATE employee SET role_id=? WHERE first_name= ?`;
+        const sqlParametersUpdateEmployee = [answers.updateEmployeeRoleName, answers.updatedEmployeeRole];
+
+        connection.query(sqlQueryUpdateEmployee, sqlParametersUpdateEmployee, function () {
+            if (err) throw err;
+             // console.table displays all of the added roles from the response in the table.
+             console.table(res);
+             centralPrompt();
+        })
+    });
+};
 
 
 module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees, 
