@@ -170,8 +170,8 @@ function addARole() {
             name: updatedEmployeeRole
             }
         ]).then(function (answers) {
-        // console.table displays all of the added roles from the response in the table
-        const sqlQueryUpdateEmployee = `UPDATE employee SET role_id=? WHERE first_name= ?`;
+        // constants to hold the answers and the SQL statement.
+        const sqlQueryUpdateEmployee = `UPDATE employee SET role_id = ? WHERE first_name = ?`;
         const sqlParametersUpdateEmployee = [answers.updateEmployeeRoleName, answers.updatedEmployeeRole];
 
         connection.query(sqlQueryUpdateEmployee, sqlParametersUpdateEmployee, function () {
@@ -179,11 +179,39 @@ function addARole() {
              // console.table displays all of the added roles from the response in the table.
              console.table(res);
              centralPrompt();
-        })
+        });
     });
 };
 
 
+
+// BONUS //
+
+function updateAManager () {
+    inquirer.prompt([
+        {
+         type: input,
+         name: updateManager,
+         message: 'Please specify the name of the employee to update.'
+        },
+        {
+         type: input,
+         name: employeesManager,
+         message: 'What is the name of this employees manager?'
+        }
+    ]).then(function (answers) {
+        // constants to hold the answers and the SQL statement.
+        const sqlQueryUpdateManager = `UPDATE employee SET manager_id = ? WHERE id = ?`;
+        const sqlParametersUpdateManager = [answers.updateManager, answers.employeesManager]
+        connection.query(sqlQueryUpdateManager, sqlParametersUpdateManager, function () {
+            if (err) throw err;
+        // console.table displays all of the added roles from the response in the table.
+             console.table(res);
+             centralPrompt();
+        });
+    });
+};
+
 module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees, 
     addADepartment, addARole, addAnEmployee, updateAnEmployeeRole, updateAnEmployeeManger, 
-    viewAllEmployeeByDepartment, deleteADepartment, deleteARole, deleteAnEmployee, viewEntireBudget, EndApplication}
+    viewAllEmployeeByDepartment, deleteADepartment, deleteARole, deleteAnEmployee, viewEntireBudget}

@@ -23,7 +23,7 @@ whenConnectionIsLive();
 
 // when connection is live display using chalk a piece of string art to greet the user appropriately.
 function whenConnectionIsLive() {
-console.log(chalk.blue.bold(' Nifty Employee Tracker!'));
+console.log(' Nifty Employee Tracker!');
 centralPrompt();
 };
 
@@ -89,7 +89,8 @@ function centralPrompt() {
                         viewEntireBudget();
 
                     } if (answers === 'Exit application') {
-                        EndApplication();
+                        connection.end();
+                        process.exit();
                     }
                 });
 };
