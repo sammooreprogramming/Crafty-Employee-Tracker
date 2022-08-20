@@ -2,7 +2,7 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
-const functions = require('util/functions'); 
+const functions = require('./util/functions'); 
 // The below is dotenv & it is used for password encryption and security purposes.
 require('dotenv').config()
 // Database conncection (password hidden with dotenv).
@@ -15,9 +15,9 @@ const connection = mysql.createConnection({
 });
 
 // if error is returned throw the error
-connection.connect(function error() {
+connection.connect(function (err) {
 if (err) throw err;
-console.log('Connection to id' + connection.threadId + 'is live!');
+console.log('Connection to id ' + connection.threadId + ' is live!');
 whenConnectionIsLive();
 });
 
@@ -76,17 +76,17 @@ function centralPrompt() {
                     } if (answers === 'View employees by department') {
                         viewAllEmployeeByDepartment();
 
-                    } if (answers === 'Delete department') {
-                        deleteADepartment();
+                    // } if (answers === 'Delete department') {
+                    //     deleteADepartment();
 
-                    } if (answers === 'Delete role') {
-                        deleteARole();
+                    // } if (answers === 'Delete role') {
+                    //     deleteARole();
 
-                    } if (answers === 'Delete employee') {
-                        deleteAnEmployee();
+                    // } if (answers === 'Delete employee') {
+                    //     deleteAnEmployee();
                         
-                    } if (answers === 'View entire budget') {
-                        viewEntireBudget();
+                    // } if (answers === 'View entire budget') {
+                    //     viewEntireBudget();
 
                     } if (answers === 'Exit application') {
                         connection.end();

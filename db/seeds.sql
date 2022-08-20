@@ -1,7 +1,7 @@
-/* Allows the employeeDB to be incorperated into the project */
+
 USE employee_tracker_db;
 
-/* This inserts the values into the department table */
+
 INSERT INTO department 
 (name)
 

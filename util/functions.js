@@ -1,7 +1,7 @@
 // Requirements
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const cTable = require(console.table);
+const cTable = require('console.table');
 
 // All functions are listed below.
 function viewAllDepartments() {
@@ -187,7 +187,7 @@ function addARole() {
 
 // BONUS //
 
-function updateAManager () {
+function updateAnEmployeeManger () {
     inquirer.prompt([
         {
          type: input,
@@ -212,6 +212,10 @@ function updateAManager () {
     });
 };
 
-module.exports = {viewAllDepartments, viewAllRoles, viewAllEmployees, 
+function viewAllEmployeeByDepartment () {
+
+};
+
+module.exports = { viewAllDepartments, viewAllRoles, viewAllEmployees, 
     addADepartment, addARole, addAnEmployee, updateAnEmployeeRole, updateAnEmployeeManger, 
-    viewAllEmployeeByDepartment, deleteADepartment, deleteARole, deleteAnEmployee, viewEntireBudget}
+    viewAllEmployeeByDepartment }
