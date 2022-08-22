@@ -1,5 +1,5 @@
 
-USE employee_tracker_db;
+USE employee_db;
 
 
 INSERT INTO department 
